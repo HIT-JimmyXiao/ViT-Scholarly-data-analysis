@@ -136,8 +136,8 @@ Rscript -e "rmarkdown::render('report_EN.Rmd')"
 
 ## 📮 联系方式
 
-- GitHub: [https://github.com/your-account](https://github.com/your-account)
-- Email: your.name@example.com
+- GitHub: [https://github.com/HIT-JimmyXiao](https://github.com/HIT-JimmyXiao)
 
 欢迎 Issue / PR 互动交流，一起拓展 Vision Transformer 研究地图！
+
 
