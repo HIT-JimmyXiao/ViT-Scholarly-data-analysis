@@ -133,8 +133,8 @@ Distributed under the [MIT License](LICENSE).
 
 ## 📮 Contact
 
-- GitHub: [https://github.com/your-account](https://github.com/your-account)
-- Email: your.name@example.com
+- GitHub: [https://github.com/HIT-JimmyXiao](https://github.com/HIT-JimmyXiao)
 
 Issues and PRs are welcome—let’s map the Vision Transformer research landscape together!
+
 
