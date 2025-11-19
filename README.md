@@ -1,18 +1,13 @@
-<h1 align="center">DIY: Academic Landscape Explorer - Vision Transformer Scholarly Atlas</h1>
+<h1 align="center">ViT Scholarly Atlas — Final Submission Report</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/ViT%20Scholarly%20Atlas-EDA%20for%20Web%20of%20Science-blue" alt="ViT Scholarly Atlas" width="480"/>
   <br/><br/>
+  <a href="https://github.com/HIT-JimmyXiao/ViT-Scholarly-data-analysis"><img alt="Repository" src="https://img.shields.io/badge/GitHub-Repository-black?logo=github"></a>
+  <a href="https://bowenzhao917.shinyapps.io/vit-scholarly-dashboard/"><img alt="Deployed App" src="https://img.shields.io/badge/Shiny-App%20Live-success?logo=r"></a>
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-green"></a>
-  <a href="https://github.com/your-account/ViT-Scholarly-Atlas/releases"><img alt="Release" src="https://img.shields.io/badge/version-1.0.0-blue"></a>
-  <a href="#核心可视化"><img alt="Visualizations" src="https://img.shields.io/badge/dashboards-6%20plots-orange"></a>
-  <a href="submit/report_EN.Rmd"><img alt="R Markdown" src="https://img.shields.io/badge/RMarkdown-EN%2FCN-success"></a>
+  <a href="#main-features-and-what-they-offer-to-users"><img alt="Features" src="https://img.shields.io/badge/dashboards-5%20panels-orange"></a>
 </p>
-
-<h4 align="center">
-  <b>简体中文</b> |
-  <a href="README_en.md">English</a>
-</h4>
 
 ---
 
@@ -167,4 +162,5 @@ Rscript -e "shiny::runApp('app.R')"
 - GitHub: [https://github.com/HIT-JimmyXiao](https://github.com/HIT-JimmyXiao)
 
 欢迎 Issue / PR 互动交流，一起拓展 Vision Transformer 研究地图！
+
 
