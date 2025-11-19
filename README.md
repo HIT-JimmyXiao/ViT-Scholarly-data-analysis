@@ -1,4 +1,4 @@
-<h1 align="center">ViT Scholarly Atlas — Final Submission Report</h1>
+<h1 align="center">ViT Scholarly Atlas</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/ViT%20Scholarly%20Atlas-EDA%20for%20Web%20of%20Science-blue" alt="ViT Scholarly Atlas" width="480"/>
@@ -162,5 +162,6 @@ Rscript -e "shiny::runApp('app.R')"
 - GitHub: [https://github.com/HIT-JimmyXiao](https://github.com/HIT-JimmyXiao)
 
 欢迎 Issue / PR 互动交流，一起拓展 Vision Transformer 研究地图！
+
 
 
