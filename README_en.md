@@ -69,7 +69,12 @@ Artifacts such as plots and HTML reports live in `./visualization/` and optional
 
   ![Collaboration](./visualization/plot_author_collaboration.png)
 
-> Additional figures: `./visualization/plot_cluster_characteristics.png`, etc.
+- Additional must-see figures & Shiny captures:
+  - `visualization/plot_cluster_characteristics.png`
+  - `visualization/plot_cluster_2d.png`
+  - `ViT-Scholarly-function_plot/shiny_overview.png`, `shiny_keyword_intelligence.png`, `shiny_Impact_cluster.png`, etc.
+
+> For the full interactive experience (KPIs, keyword intelligence, collaboration matrix, 3D cluster surfaces, raw data table), jump straight to **[https://bowenzhao917.shinyapps.io/vit-scholarly-dashboard/](https://bowenzhao917.shinyapps.io/vit-scholarly-dashboard/)**.
 
 ---
 
@@ -87,14 +92,22 @@ Artifacts such as plots and HTML reports live in `./visualization/` and optional
 ## 🧭 Repository Layout
 
 ```
-github/
-├── README.md             # Chinese overview
-├── README_en.md          # English overview (this file)
-├── report_CN.Rmd         # Chinese R Markdown report
-├── report_EN.Rmd         # English R Markdown report
-├── visualization/         # Rendered figures
-└── savedrecs (1|2).xls   # Original WoS exports
+ViT-Scholarly-data-analysis/
+├── app.R                        # Shiny dashboard (Flash-Freeze layout)
+├── deployed.R                   # rsconnect deployment helper
+├── README.md / README_en.md     # Docs (CN / EN)
+├── report_CN.Rmd                # Chinese R Markdown analysis
+├── report_EN.Rmd                # English R Markdown analysis
+├── savedrecs (1|2).xls          # Web of Science exports
+├── visualization/               # Rmd plots + Shiny screenshots
+├── ViT-Scholarly-function_plot/ # Extra dashboard captures
+└── LICENSE                      # MIT License
 ```
+
+### 📁 Visualization Folder
+
+- `plot*.png`: canonical figures rendered from the Rmd files.
+- `shiny_*.png`, `*-1.png`: high-res screenshots from the interactive dashboard for documentation purposes.
 
 ---
 
@@ -102,17 +115,26 @@ github/
 
 ```bash
 git clone https://github.com/your-account/ViT-Scholarly-Atlas.git
-cd ViT-Scholarly-Atlas/submit
+cd ViT-Scholarly-Atlas
 
 # Install dependencies
-Rscript -e "install.packages(c('tidyverse','readxl','lubridate','scales','RColorBrewer','wordcloud','gridExtra'))"
+Rscript -e "install.packages(c('tidyverse','readxl','lubridate','scales','RColorBrewer','wordcloud','gridExtra','bslib','plotly','DT','shinyWidgets','wordcloud2'))"
 
-# Render reports
+# Render R Markdown reports
 Rscript -e "rmarkdown::render('report_CN.Rmd')"
 Rscript -e "rmarkdown::render('report_EN.Rmd')"
+
+# Launch the Shiny dashboard locally
+Rscript -e "shiny::runApp('app.R')"
 ```
 
-The `cluster-visualization` chunk defaults to `eval = FALSE` to avoid potential hang during PCA plotting. Set it to `TRUE` if you need the scatter plot.
+The `cluster-visualization` chunk in the Rmd defaults to `eval = FALSE` (PCA can be slow); set it to `TRUE` when you need the scatter plot.
+
+### 🌐 Live Dashboard & Deployment
+
+- Public demo: **[https://bowenzhao917.shinyapps.io/vit-scholarly-dashboard/](https://bowenzhao917.shinyapps.io/vit-scholarly-dashboard/)** — explore KPIs, keyword intelligence, collaboration stats and 3D cluster surfaces without cloning the repo.
+- `app.R` reads the same `savedrecs*.xls` files and reuses `visualization/plot*.png` so screenshots stay consistent with the rendered charts.
+- Use `deployed.R` to push the dashboard to shinyapps.io (rsconnect account pre-configured). Adjust the account info if deploying under your own namespace.
 
 ---
 

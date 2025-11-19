@@ -1,4 +1,4 @@
-# DIY: Academic Landscape Explorer - Vision Transformer Scholarly Atlas
+<h1 align="center">DIY: Academic Landscape Explorer - Vision Transformer Scholarly Atlas</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/ViT%20Scholarly%20Atlas-EDA%20for%20Web%20of%20Science-blue" alt="ViT Scholarly Atlas" width="480"/>
@@ -18,7 +18,7 @@
 
 ## 📋 项目概述
 
-本仓库复现“Vision Transformer 学术景观分析”全部流程：
+本仓库实现“Vision Transformer 学术景观分析”全部流程：
 
 - **数据源**：Web of Science (WoS) 导出的 2,000 条 ViT 相关文献（`savedrecs (1).xls` + `savedrecs (2).xls`）
 - **分析工具**：R + tidyverse 生态（全部代码封装于 `submit/report_CN.Rmd` 与 `submit/report_EN.Rmd`）
@@ -45,6 +45,14 @@
 
 ## 📊 核心可视化
 
+<p align="center">
+  <img src="./visualization/shiny_overview.png" width="48%" alt="Shiny Overview">
+  <img src="./visualization/shiny_keyword_intelligence.png" width="48%" alt="Shiny Keyword Intelligence">
+  <img src="./visualization/shiny_Impact_cluster.png" width="48%" alt="Shiny Impact Cluster">
+</p>
+
+> 想直接交互式查看全部模块（含 KPI、关键词智能、协作结构、3D 聚类曲面与数据表），请访问 **[https://bowenzhao917.shinyapps.io/vit-scholarly-dashboard/](https://bowenzhao917.shinyapps.io/vit-scholarly-dashboard/)**。
+
 - 年度发表趋势
 
   ![Annual Trend](./visualization/plot1_annual_trend.png)
@@ -69,7 +77,12 @@
 
   ![Collaboration](./visualization/plot_author_collaboration.png)
 
-> 更多图表：`./visualization/plot_cluster_characteristics.png` 等。
+- 聚类特征、二维投影与 Shiny 截图：
+
+  ![Cluster Characteristics](./visualization/plot_cluster_characteristics.png)
+
+  ![Cluster PCA Projection](./visualization/plot_cluster_2d.png)
+
 
 ---
 
@@ -87,17 +100,23 @@
 ## 🧭 仓库结构
 
 ```
-ViT-Scholarly-Atlas/
-├── README.md                # 中文版说明（本文件）
-├── README_en.md             # 英文版说明
-├── LICENSE                  # 开源许可（MIT）
-├── submit/
-│   ├── report_CN.Rmd        # 中文分析报告（含全部代码）
-│   ├── report_EN.Rmd        # 英文分析报告
-│   ├── visualization/       # 生成的所有图像
-│   └── data/                # 原始数据（WoS 导出）
-└── scripts/                 # 可选：自动化渲染脚本
+ViT-Scholarly-data-analysis/
+├── app.R                        # Shiny 仪表板（与 Flash-Freeze 风格一致）
+├── deployed.R                   # shinyapps.io 部署脚本
+├── README.md / README_en.md     # 多语言说明（本文件）
+├── report_CN.Rmd                # 中文 R Markdown 报告
+├── report_EN.Rmd                # 英文 R Markdown 报告
+├── savedrecs (1|2).xls          # Web of Science 原始数据
+├── visualization/               # R Markdown 输出 + Shiny 截图（详见下文）
+├── ViT-Scholarly-function_plot/ # 仪表板高清截图/补充静态图
+└── LICENSE                      # MIT License
 ```
+
+### 📁 visualization 目录说明
+
+- `plot*_*.png`：`report_*.Rmd` 渲染出的标准图表，可直接引用到论文/幻灯片。
+- `shiny_*.png`、`top-journals-1.png` 等：在线仪表板的高清截图，方便在 README 或发布稿中展示交互效果。
+- 如需保持整洁，可将冗余旧图清理至归档分支，但本仓库默认保留全部静态素材，方便开源使用。
 
 ---
 
@@ -105,17 +124,26 @@ ViT-Scholarly-Atlas/
 
 ```bash
 git clone https://github.com/your-account/ViT-Scholarly-Atlas.git
-cd ViT-Scholarly-Atlas/submit
+cd ViT-Scholarly-Atlas
 
 # 安装依赖
-Rscript -e "install.packages(c('tidyverse','readxl','lubridate','scales','RColorBrewer','wordcloud','gridExtra'))"
+Rscript -e "install.packages(c('tidyverse','readxl','lubridate','scales','RColorBrewer','wordcloud','gridExtra','bslib','shinyWidgets','plotly','DT','wordcloud2'))"
 
-# 渲染报告
+# 渲染 R Markdown 报告
 Rscript -e "rmarkdown::render('report_CN.Rmd')"
 Rscript -e "rmarkdown::render('report_EN.Rmd')"
+
+# 或启动交互式仪表板
+Rscript -e "shiny::runApp('app.R')"
 ```
 
-- `cluster-visualization` 代码块默认 `eval = FALSE`，避免 PCA 绘图卡顿；如需查看，可手动设置为 `eval=TRUE`。
+- `cluster-visualization` 代码块默认 `eval = FALSE`，避免 PCA 绘图卡顿；如需查看，可手动设置 `eval=TRUE`。
+
+### 🌐 在线体验与部署
+
+- **Shiny 仪表板** 已托管到 shinyapps.io，直接访问 👉 [https://bowenzhao917.shinyapps.io/vit-scholarly-dashboard/](https://bowenzhao917.shinyapps.io/vit-scholarly-dashboard/)。
+- `app.R` 中的 `bs_theme`、KPI 卡片和 3D 聚类截面与 Flash-Freeze 框架保持一致，涵盖 Overview / Keyword Intelligence / Collaboration / Impact Clusters / Data Explorer 五大分屏。
+- 如需自建部署，执行 `deployed.R` 即可通过 rsconnect 将同一套仪表板推送到个人 shinyapps.io 或 Posit Connect。
 
 ---
 
@@ -139,5 +167,4 @@ Rscript -e "rmarkdown::render('report_EN.Rmd')"
 - GitHub: [https://github.com/HIT-JimmyXiao](https://github.com/HIT-JimmyXiao)
 
 欢迎 Issue / PR 互动交流，一起拓展 Vision Transformer 研究地图！
-
 
